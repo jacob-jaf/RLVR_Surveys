@@ -124,10 +124,13 @@ def main(cfg: ExperimentConfig):
         wandb.define_metric("eval/*", step_metric="eval_step")
 
     model_output_path.mkdir(parents=True, exist_ok=True)
-
-    reward_fn = (
-        question_only_reward_fn if cfg.training.use_question_only else r1_zero_reward_fn
-    )
+    #
+    
+    reward_fn = grader_tool
+    
+    # reward_fn = (
+    #     question_only_reward_fn if cfg.training.use_question_only else r1_zero_reward_fn
+    # )
 
     def evaluate(
         eval_step: int, n_examples: int | None = None, grpo_step: int | None = None
